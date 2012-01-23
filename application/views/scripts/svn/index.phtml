@@ -1,0 +1,63 @@
+<script type="text/javascript" src="/svnapproval/js/svn_log.js"></script>
+
+
+
+<style>
+/* TODO shouldn't be necessary */
+		.ui-button { margin-left: -1px; }
+		.ui-button-icon-only .ui-button-text { padding: 0.35em; } 
+		.ui-autocomplete-input { margin: 0; padding: 0.48em 0 0.47em 0.45em; }
+		.ui-select  {margin-bottom:12px;width:99%;font-size: 14px }
+
+</style>
+
+
+
+<table width="100%" cellpadding="1" cellspacing="1" align="center" >
+	<tr>
+		<td class="componentheading" colspan="3" width="100%" id="tituloConsultaLigacao">Svn Log</td>
+	</tr>
+	
+	<tr>
+
+		<td bgcolor="#E0E0E0" width="40%">
+			<div style="font-size:9px;font-family:arial;color:#000000;cursor:">Revision</div>
+			<input type="text" class="text" size="100" id="urlsite"  style="width: 10%">
+			
+		</td>
+
+
+		<td bgcolor="#E0E0E0" width="30%">
+		<div style="font-size:9px;font-family:arial;color:#000000;cursor:">Author</div>
+			<input type="text" class="text" size="11" id="nome" style="width: 40%">
+		</td>
+		
+		<td bgcolor="#E0E0E0" width="10%">
+		<div style="font-size:9px;font-family:arial;color:#000000;cursor:">Show Last</div>
+			<input type="text" class="text" size="11" id="last" style="width: 30%" >
+		</td>
+				
+		<!-- Botão "OK" -->
+		<td bgcolor="#E0E0E0" width="3%">
+		&nbsp;<button id="enviaDados" type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">  OK</span></button>
+		</td>	
+		
+		
+	</tr>
+
+</table>
+
+<table width="100%" cellpadding="1" cellspacing="1" align="center">
+	<tr>
+		<td bgcolor="#FFFFFF" style="border:3px solid #E0E0E0" colspan="2">
+			<div style="height:300px;overflow:auto;" id="resultadoConsulta"></div>	
+		
+		</td>
+	</tr>
+</table>
+
+
+
+
+
+

@@ -1,0 +1,52 @@
+<table width="100%" style="font-size:12px;" cellpadding="0" cellspacing="1" border="0">
+	<Tr>
+		<th style="background-color: #333;color: #fff;width: 1%"><center>&nbsp;</th>
+		<th style="background-color: #333;color: #fff;width: 4%"><center>Version</th>
+		<th style="background-color: #333;color: #fff;width: 4%"><center>Author</th>
+		<th style="background-color: #333;color: #fff;width: 8%"><center>Date</th>
+		<th style="background-color: #333;color: #fff;width: 40%"><center>Comment</th>
+		<th style="background-color: #333;color: #fff;width: 5%"><center>Files</th>
+	</Tr>
+		
+		
+			
+			
+			 <?
+			 
+			 //print_r($this) ; 
+			 
+			//print_r($this->logs) ; 
+			
+			$logs = $this->logs  ;
+
+			//echo sizeof($logs) ; 
+
+			for($i = sizeof($logs) -1  ; $i > 0 ; $i -- )
+			{
+				$corlinha = ($corlinha == "#E4E4E4")?"#FFFFFF":"#E4E4E4";
+			?>
+		<TR bgcolor="<? echo $corlinha ?>" onMouseOver="javascript:this.style.backgroundColor='#ABABAB'" onMouseOut="javascript:this.style.backgroundColor='<? echo $corlinha ?>'">
+			<td>
+				<center><input type="checkbox"></center>
+			</td>
+			<td>
+				<center><? echo $logs[$i]['version']  ?></center>
+			</td>
+			<td>
+				<center><? echo $logs[$i]['author']  ?></center>
+			</td>
+			<td>
+				<center><? echo  $zend_date = new Zend_Date($logs[$i]['date'] , Zend_Date::ISO_8601);  ?></center>
+			</td>
+			<td>
+				<? echo $logs[$i]['comment']  ?>
+			</td>
+			<td>
+				
+			</td>
+		</TR>
+			<?
+			}		
+		?>
+		<script>$('#rown_count').html(<? echo count($this->resultado)  ?>+' Registros Encontrados');</script>
+	</table>
