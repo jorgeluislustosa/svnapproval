@@ -29,7 +29,7 @@ class SvnController extends Zend_Controller_Action
     	 
     	$svn->setRespository("http://srvsvn-trf1.trf1.gov.br/svn/processual/");
     	 
-    	$svn->setAuth("webadm","a1b2c3d4e5f6") ;
+    	$svn->setAuth("webadm","a1b2c3d4e5f6") ; 
     	 
     	 
     	$logs = $svn->getRepositoryLogs($svn->getVersion()-$last);

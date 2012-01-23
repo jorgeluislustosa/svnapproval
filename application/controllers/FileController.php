@@ -11,7 +11,7 @@ class FileController extends Zend_Controller_Action
 		/* Initialize action controller here */
 	}
 	
-	public function indexAction()
+	public function indexAction() 
 	{
 		
 		
@@ -28,7 +28,7 @@ class FileController extends Zend_Controller_Action
 		$op = $_REQUEST['op'];
 		$folder = $_REQUEST['folder'];
 		
-		if($folder=="") $folder = "/srv/intranet/" ; 
+		if($folder=="") $folder = "/d01/svnapproval/" ; 
 		
 	
 		$count = "0";
@@ -68,15 +68,43 @@ class FileController extends Zend_Controller_Action
 				//	echo "Directory is unreadable\n";
 				}
 				$count++;
-			}
+			} 
 		}
 		closedir($style);
 
+		
+		$svn_st = shell_exec("/usr/bin/svn status /d01/svnapproval/. ") ;
+
+		if($svn_st != "")
+		{ 
+			//echo "erro" ; 
+			
+			$status = explode("\n",$svn_st) ;
+				
+			
+			//$status = explode("       ",$svn_st) ;
+
+			for($i = 0 ; sizeof($status) > $i ; $i ++)
+			{ 
+				$parts = explode("       ",$status[$i]) ;
+				//print_r($parts) ; 
+				//echo $status[$i]."<br>" ; 
+				$array_status["".$parts[1].""]=$parts[0] ; 
+			}
+			
+			
+		}
+		
+		//print_r($array_status) ; 
+		
 		$this->view->content  = $content ;
+		$this->view->status = $content ;
 		
 		
 		
 	}
+	
+	
 	
 	
 } 
