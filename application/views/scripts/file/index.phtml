@@ -1,9 +1,30 @@
+<script type="text/javascript" src="/svnapproval/js/svn_file.js"></script>
 <?
 
 $content = $this->content ;
+
+$status = $this->status ;
+
+//print_r($status) ; 
 		
 ?> 
+
+
+
+
 <table border="0" cellpadding="2" cellspacing="0" width=100%>
+<tr>
+<td colspan=6></td>
+
+<td >
+<select name="folder" id="folder" > 
+<option value =""></option>
+<option value ="/srv/svnapproval/">svnapproval</option>
+<option value ="/srv/intranet/">intranet</option>
+</select></td>
+</tr>
+
+
 
 <tr  width=100%>
 <td width=300>Filename
@@ -15,36 +36,29 @@ $content = $this->content ;
 <td align="center" width=44>View
 <tr height="2"><td height="2" colspan="3">;
 		
-		
-		
 <?  
-
-/*
-
-for ($a=1; $a<count($content1)+1;$a++) {
-		$tcoloring   = ($a % 5) ? $tbcolor1 : $tbcolor2;
-		echo "<tr width=100%>";
-	    echo $content1[$a];
-		}
-	
-		for ($b=1; $b<count($content2)+1;$b++) {
-		$tcoloring   = ($a++ % 2) ? $tbcolor1 : $tbcolor2;
-		echo "<tr  width=100%>";
-		echo $content2[$b];
-		}
-
-*/
-
 
 	for ($a=1; $a<count($content)+1;$a++) 
 	{
+	
+		if(isset($status["".$content[$a]["NAME"].""]))
+		{ 
+		  $status_file = $status["".$content[$a]["NAME"]] ; 
+		} else 
+		{ 
+			$status_file = "" ; 
+		} 
+	
 ?> 
 <tr  width=100%> 
-	<td><? echo $content[$a]["NAME"] ?></td>
-	
+	<td>
+	<input type="checkbox" value="<? echo $content[$a]["NAME"]?>" id="<? echo $content[$a]["NAME"]?>">
+	<a href="?folder=<? echo $content[$a]["NAME"] ?>/"><? echo $content[$a]["NAME"]." ".$status_file ?></a>
+	</td>
 	
 	<? if($content[$a]["TYPE"] == "D")  
 	{ 
+		// verify if file is modified or other stuff  
 	?> 
 	<td align="center"><a href="?folder=<? echo $content[$a]["NAME"] ?>/">Open</a></td>
 	<? 
@@ -71,3 +85,17 @@ for ($a=1; $a<count($content1)+1;$a++) {
 
 
 </table>
+
+<br>
+<table> 
+<tr>
+<td><input type="button" value="add" id="add_file"></td>
+</tr>
+</table> 
+
+<div id="added_files">
+</div>
+
+
+
+

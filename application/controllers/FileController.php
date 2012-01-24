@@ -28,7 +28,7 @@ class FileController extends Zend_Controller_Action
 		$op = $_REQUEST['op'];
 		$folder = $_REQUEST['folder'];
 		
-		if($folder=="") $folder = "/d01/svnapproval/" ; 
+		if($folder=="") $folder = "/srv/svnapproval/" ; 
 		
 	
 		$count = "0";
@@ -73,7 +73,7 @@ class FileController extends Zend_Controller_Action
 		closedir($style);
 
 		
-		$svn_st = shell_exec("/usr/bin/svn status /d01/svnapproval/. ") ;
+		$svn_st = shell_exec("/usr/bin/svn status ".$_REQUEST['folder'].". ") ;
 
 		if($svn_st != "")
 		{ 
@@ -98,11 +98,81 @@ class FileController extends Zend_Controller_Action
 		//print_r($array_status) ; 
 		
 		$this->view->content  = $content ;
-		$this->view->status = $content ;
+		$this->view->status = $array_status ;
 		
 		
 		
 	}
+	
+	public function svnaddedfilesAction()
+	{
+
+		$this->_helper->layout()->disableLayout();
+		$this->_helper->viewRenderer->setNoRender(true);
+		
+
+		$svn_st = shell_exec("/usr/bin/svn status /srv/svnapproval/. ") ;
+		
+		if($svn_st != "")
+		{
+			//echo "erro" ;
+				
+			$status = explode("\n",$svn_st) ;
+		
+				
+			//$status = explode("       ",$svn_st) ;
+		
+			for($i = 0 ; sizeof($status) > $i ; $i ++)
+			{
+			$parts = explode("       ",$status[$i]) ;
+			//print_r($parts) ;
+			//echo $status[$i]."<br>" ;
+			
+			if($parts[0] == "A")
+			{ 
+				$array_status["".$parts[1].""]=$parts[0] ;
+			}
+			
+			
+			}
+
+			print_r($array_status) ; 
+			
+				
+		}
+		
+		
+		
+	}
+
+	
+	public function svnaddAction()
+	{
+	
+		$this->_helper->layout()->disableLayout();
+		$this->_helper->viewRenderer->setNoRender(true);
+		
+		
+		//print_r($_REQUEST['tags']); 
+		
+		for($i = 0 ; sizeof($_REQUEST['tags']) > $i ; $i ++)
+		{
+			//echo $_REQUEST['tags'][$i] ; 
+			
+			
+			echo $command = "/usr/bin/svn add ".$_REQUEST['tags'][$i]." " ; 
+			
+			$svn_add = shell_exec("/usr/bin/svn add ".$_REQUEST['tags'][$i]." ") ;
+			
+			
+			
+		}
+		
+		
+	
+	
+	} 
+	
 	
 	
 	
