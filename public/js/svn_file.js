@@ -1,11 +1,16 @@
 $(document).ready(function()
 {
 
-	//when start populate added files  
+/*	//when start populate added files  
 	
 	$.post('/svnapproval/file/svnaddedFiles/', function(data) 
 	{
-				  $('#added_files').html(data);
+				//  $('#added_files').html(data);
+	});
+	
+	$.post('/svnapproval/file/listfiles/', function(data) 
+	{
+					//	  $('#resultadoConsulta').html(data);
 	});
 	
 	
@@ -59,7 +64,7 @@ $(document).ready(function()
 	
 	 
 	 
-	 
+	 */ 
 	
 	
 	
