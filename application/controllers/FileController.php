@@ -14,6 +14,8 @@ class FileController extends Zend_Controller_Action
 	public function indexAction() 
 	{
 		
+		$this->view->folder = "/srv/svnapproval" ; 
+		$this->view->project_name = "svnapproval" ;
 		
 		//$this->home() ; 
 		
@@ -62,6 +64,49 @@ class FileController extends Zend_Controller_Action
 		
 		
 	}
+	
+	public function svnstAction()
+	{
+	
+		$this->_helper->layout()->disableLayout();
+		//$this->_helper->viewRenderer->setNoRender(true);
+	
+	
+		$svn_st = shell_exec("/usr/bin/svn status /srv/svnapproval/. ") ;
+	
+		if($svn_st != "")
+		{
+			//echo "erro" ;
+	
+			$status = explode("\n",$svn_st) ;
+	
+	
+			//$status = explode("       ",$svn_st) ;
+	
+			for($i = 1 ; sizeof($status) > $i ; $i ++)
+			{
+			$parts = explode("       ",$status[$i]) ;
+			//print_r($parts) ;
+			//echo $status[$i]."<br>" ;
+				
+			//if($parts[0] == "A")
+			//{
+			//$array_status["".$parts[1].""]=$parts[0] ;
+			$array_status[$i]["NAME"]=$parts[1] ;
+			//}
+				
+				
+			}
+	
+			$this->view->content  = $array_status ;
+			
+	
+		}
+	
+	
+	
+		}
+	
 
 	
 	public function svnaddAction()
@@ -115,12 +160,14 @@ class FileController extends Zend_Controller_Action
 	public function listfilesAction()
 	{
 	
+		$this->_helper->layout()->disableLayout();
+		
 		global $folder, $tbcolor1, $tbcolor2, $tbcolor3, $filefolder, $HTTP_HOST;
 	
 		$op = $_REQUEST['op'];
 		$folder = $_REQUEST['folder'];
 	
-		if($folder=="") $folder = "/d01/svnapproval/" ;
+		if($folder=="") $folder = "/srv/svnapproval/" ;
 	
 	
 		$count = "0";
@@ -191,6 +238,8 @@ class FileController extends Zend_Controller_Action
 	
 			$this->view->content  = $content ;
 			$this->view->status = $array_status ;
+			$this->view->folder = $folder ;
+				
 	
 	
 	

@@ -1,6 +1,19 @@
+
+
 $(document).ready(function()
 {
 
+	$.post('/svnapproval/file/listfiles/', function(data) 
+	{
+		 $('#filemanager').html(data);
+	});
+
+	$.post('/svnapproval/file/svnst/', function(data) 
+	{
+				 $('#changedfiles').html(data);
+	});
+	
+	
 /*	//when start populate added files  
 	
 	$.post('/svnapproval/file/svnaddedFiles/', function(data) 
@@ -57,17 +70,20 @@ $(document).ready(function()
 			  
 			  
 		  });
-		  
-		  
 	});
-	
-	
-	 
-	 
 	 */ 
+});
+
+
+
+function opendir(dir) 
+{
 	
-	
-	
-	
-	
-}); 
+	$.post('/svnapproval/file/listfiles/',{ 'folder':dir+'/' } , function(data) 
+			{
+				 $('#filemanager').html(data);
+			});
+
+
+
+}
