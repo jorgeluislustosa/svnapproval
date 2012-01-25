@@ -31,17 +31,16 @@ $content = $this->content ;
 
 
 // empty folder treatment 
-if(sizeof($content) != 1)
-{ 
 
-	for($i = 1 ; sizeof($content) > $i ; $i ++)
+	for($i = 0 ; sizeof($content) > $i ; $i ++)
 	{ 
 	?>	
 	
 	 <tr class="alt">
 	 <?php if($content[$i]["TYPE"] == "D"){ $img = "dir.png"; }  else { $img = "txt.png" ; } ?>
-	            <td class="icon"> <img alt="directory" height="16" src="/svnapproval/img/<? echo $img ?>" width="16" /> </td>
-	            <td class="content"> <a href="#" onclick="opendir('<?php echo  $content[$i]["NAME"] ; ?>')"    class="js-slide-to js-rewrite-sha" ><?php echo  $content[$i]["NAME"] ; ?> </a></td>
+	 			
+	            <td class="icon" nowrap="nowrap"><input type="checkbox" id="<?php  echo  $content[$i]["NAME"] ;  ?>">  </td>
+	            <td class="content"> <a style="cursor:pointer" onclick="openfile('<?php echo  $content[$i]["NAME"] ; ?>')"    class="js-slide-to js-rewrite-sha" ><?php echo $content[$i]["TYPE"]." - ".$content[$i]["NAME"] ; ?> </a></td>
 	            <td class="age"> <time class="js-relative-date" datetime="2012-01-23T22:06:03-08:00" title="2012-01-23 22:06:03">January 23, 2012</time> </td>
 	            <td class="message"> <a href="/bsdperimeter/pfsense-packages/commit/dc555615f68325945ff12c35cf5d9ea0dccdf4ee" class="message">removes the gratioutous use of killall and kill -9 in place of using …</a> </td>
 	 </tr>
@@ -49,21 +48,12 @@ if(sizeof($content) != 1)
 	<?	
 	}
 	
+	?> 
 	
-	} 
-	else
-	{ 
-	?>	
-		<tr class="alt">
-		            <td class="icon"></td>
-		            <td class="content"> <a href="#" onclick="opendir('<?php echo  $folder  ?>')"    class="js-slide-to js-rewrite-sha" ><?php echo  $content[$i]["NAME"] ; ?> .. </a></td>
-		            <td class="age"> <time class="js-relative-date" datetime="2012-01-23T22:06:03-08:00" title="2012-01-23 22:06:03">January 23, 2012</time> </td>
-		            <td class="message"> <a href="/bsdperimeter/pfsense-packages/commit/dc555615f68325945ff12c35cf5d9ea0dccdf4ee" class="message">removes the gratioutous use of killall and kill -9 in place of using …</a> </td>
-		 </tr>
-<?
-}
-?>
           
         </tbody>
 
       </table>
+      
+      
+      
