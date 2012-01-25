@@ -14,7 +14,7 @@ class FileController extends Zend_Controller_Action
 	public function indexAction() 
 	{
 		
-		$this->view->folder = "/srv/svnapproval" ; 
+		$this->view->folder = "/d01/svnapproval" ; 
 		$this->view->project_name = "svnapproval" ;
 		
 		//$this->home() ; 
@@ -72,30 +72,19 @@ class FileController extends Zend_Controller_Action
 		//$this->_helper->viewRenderer->setNoRender(true);
 	
 	
-		$svn_st = shell_exec("/usr/bin/svn status /srv/svnapproval/. ") ;
-	
+		//$svn_st = shell_exec("/usr/bin/svn status /d01/svnapproval/. ") ;
+		
+		
+		$svn_st = exec("/usr/bin/svn  st /d01/svnapproval/. 2>&1", $output , $returnStatus);
+
 		if($svn_st != "")
 		{
-			//echo "erro" ;
-	
-			$status = explode("\n",$svn_st) ;
-	
-	
-			//$status = explode("       ",$svn_st) ;
-	
-			for($i = 1 ; sizeof($status) > $i ; $i ++)
+			
+			for($i = 0 ; sizeof($output) > $i ; $i ++)
 			{
-			$parts = explode("       ",$status[$i]) ;
-			//print_r($parts) ;
-			//echo $status[$i]."<br>" ;
-				
-			//if($parts[0] == "A")
-			//{
-			//$array_status["".$parts[1].""]=$parts[0] ;
-			$array_status[$i]["NAME"]=$parts[1] ;
-			//}
-				
-				
+				$parts = explode("       ",$output[$i]) ;
+				$array_status[$i]["NAME"]=$parts[1] ;
+				$array_status[$i]["TYPE"]=$parts[0] ;
 			}
 	
 			$this->view->content  = $array_status ;
@@ -107,7 +96,6 @@ class FileController extends Zend_Controller_Action
 	
 		}
 	
-
 	
 	public function svnaddAction()
 	{
@@ -140,19 +128,21 @@ class FileController extends Zend_Controller_Action
 		$this->_helper->viewRenderer->setNoRender(true);
 	
 	
-		//print_r($_REQUEST['tags']);
-	
 		for($i = 0 ; sizeof($_REQUEST['tags']) > $i ; $i ++)
 		{
+
+			$command  .=  " ".$_REQUEST['tags'][$i]." "   ; 
 			
-		exec("/usr/bin/svn  add ".$_REQUEST['tags'][$i]." 2>&1", $output, $returnStatus);
+			
+
+		}
+	
+		
+		exec("/usr/bin/svn --username jorgelustosa@gmail.com --password ZM3nX4aV7kS5 commit ".$command ." -m \"teste classe\" 2>&1", $output, $returnStatus);
 		if ( $returnStatus )
 		{
-		print_r($output);
+			print_r($output);
 		}
-	
-		}
-	
 	
 	}
 	
@@ -167,7 +157,7 @@ class FileController extends Zend_Controller_Action
 		$op = $_REQUEST['op'];
 		$folder = $_REQUEST['folder'];
 	
-		if($folder=="") $folder = "/srv/svnapproval/" ;
+		if($folder=="") $folder = "/d01/svnapproval/" ;
 	
 	
 		$count = "0";
@@ -215,7 +205,7 @@ class FileController extends Zend_Controller_Action
 		$svn_st = shell_exec("/usr/bin/svn status ".$_REQUEST['folder'].". ") ;
 	
 		if($svn_st != "")
-		{
+		{ 
 			//echo "erro" ;
 				
 			$status = explode("\n",$svn_st) ;
@@ -240,10 +230,9 @@ class FileController extends Zend_Controller_Action
 			$this->view->status = $array_status ;
 			$this->view->folder = $folder ;
 				
-	
-	
-	
 	}
+	
+
 	
 	
 	
