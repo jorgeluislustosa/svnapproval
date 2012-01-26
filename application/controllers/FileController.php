@@ -44,17 +44,6 @@ class FileController extends Zend_Controller_Action
 		if($svn_st != "")
 		{
 			
-			//echo sizeof($output) ; 
-			
-			// not output 
-			if(!isset($output[0])) 
-			{ 
-					$this->_helper->layout()->disableLayout();
-					$this->_helper->viewRenderer->setNoRender(true);
-			}
-			else
-			{ 
-			
 				for($i = 0 ; sizeof($output) > $i ; $i ++)
 				{
 					$parts = explode("       ",$output[$i]) ;
@@ -63,7 +52,6 @@ class FileController extends Zend_Controller_Action
 				}
 		
 				$this->view->content  = $array_status ;
-			} 
 		}
 	
 	
