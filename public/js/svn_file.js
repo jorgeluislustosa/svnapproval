@@ -12,6 +12,7 @@ $(document).ready(function()
 		// when no have data to show !!! 
 		if(data=="")
 		{ 
+			alert('') ; 
 			$('#fileschange').hide();
 		}
 		else
@@ -76,6 +77,10 @@ $(document).ready(function()
 			  //update added files 
 			  $.get('/svnapproval/file/svnst/', function(data) 
 			  {
+				  
+				  
+				  
+				  
 				  $('#changedfiles').html(data);
 			  });
 			  
