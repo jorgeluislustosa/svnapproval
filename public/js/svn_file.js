@@ -30,6 +30,9 @@ $(document).ready(function()
 		  $.post('/svnapproval/file/svnadd', { 'tags[]': tagsArray },function(data) 
 		  {
 			  
+			  $("#missing-readme").show("slow");
+			  $('#missing-readme').html(data);
+			  
 			  //update added files 
 			  $.get('/svnapproval/file/svnst/', function(data) 
 			  {
@@ -56,6 +59,10 @@ $(document).ready(function()
 		
 		  $.post('/svnapproval/file/svncommit', { 'tags[]': tagsArray },function(data) 
 		  {
+			  
+			  $("#missing-readme").show("slow");
+			  $('#missing-readme').html(data);
+
 			  
 			  //update added files 
 			  $.get('/svnapproval/file/svnst/', function(data) 

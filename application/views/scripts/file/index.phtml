@@ -1,9 +1,3 @@
-<? 
-
-
-?> 
-
-
 <script type="text/javascript" src="/svnapproval/js/svn_file.js"></script>
 
 <p class="last-commit">Latest commit to the <strong>master</strong> branch</p>
@@ -33,8 +27,6 @@
         <b><a href="#"  onclick="opendir('<? echo $this->folder ?>')"  class="js-rewrite-sha"><? echo $this->project_name ?></a></b> / 
       </div>
 
-        
-
   <div class="frames">
     <div class="frame frame-center" data-path="/" data-permalink-url="/bsdperimeter/pfsense-packages/tree/77843d5bf49396612310007b236a74b252f3fbba" data-title="bsdperimeter/pfsense-packages - GitHub" data-type="tree" data-cached-commit-url="/bsdperimeter/pfsense-packages/cache/commits/77843d5bf49396612310007b236a74b252f3fbba?commit_sha=77843d5bf49396612310007b236a74b252f3fbba&amp;path=">
 
@@ -48,13 +40,23 @@
 <div class="bubble tree-browser-wrapper" id="changedfiles"></div>      
  
  
-<a data-ref="master" data-master-branch="master" class="minibutton bigger switcher context-menu-button js-menu-target js-commitish-button btn-branch repo-tree" href="#" id="add_file">
+<!--  Buttons  -->
+ 
+<a data-ref="master" data-master-branch="master" class="minibutton bigger switcher context-menu-button js-menu-target js-commitish-button btn-branch repo-tree" id="add_file">
             <span><span class="icon"></span>add</span>
           </a> 
  
-<a data-ref="master" data-master-branch="master" class="minibutton bigger switcher context-menu-button js-menu-target js-commitish-button btn-branch repo-tree" href="#" id="commit_file" >
+<a data-ref="master" data-master-branch="master" class="minibutton bigger switcher context-menu-button js-menu-target js-commitish-button btn-branch repo-tree"  id="commit_file" >
             <span><span class="icon"></span>commit</span>
           </a> 
+ 
+<!--  alerts  -->
+
+<br>
+<br>
+<br>
+
+<div id="missing-readme" style="display: none"></div>
  
  
  
