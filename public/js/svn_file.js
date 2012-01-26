@@ -36,7 +36,8 @@ $(document).ready(function()
 	    	 tagsArray.push(id);
 	     })  
 		
-		
+		$('#changedfiles').html('<center><img src="/svnapproval/img/loading.gif"> </img></center>');
+	     
 		  $.post('/svnapproval/file/svnadd', { 'tags[]': tagsArray },function(data) 
 		  {
 			  
@@ -117,7 +118,7 @@ function opendir(dir)
 	
 	
 	
-	$.post('/svnapproval/file/listfiles/',{ 'folder':dir+'/' } , function(data) 
+	$.post('/svnapproval/file/listfiles/',{ 'folder':dir } , function(data) 
 			{
 				 $('#filemanager').html(data);
 			});

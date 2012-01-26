@@ -179,7 +179,7 @@ class FileController extends Zend_Controller_Action
 		
 		for($i = 0 ; sizeof($array_dir) > $i ; $i ++)
 		{
-			$content[$a]["NAME"] = $array_dir[$i] ;
+			$content[$a]["NAME"] = $array_dir[$i]."/" ;
 			$content[$a]["TYPE"] = "D";
 			$a ++  ; 
 		}
@@ -220,6 +220,8 @@ class FileController extends Zend_Controller_Action
 			$this->view->content  = $content ;
 			$this->view->status = $array_status ;
 			$this->view->folder = $folder ;
+			$this->view->project_folder =  $project->directory ;
+				
 				
 	}
 	
