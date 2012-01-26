@@ -8,8 +8,6 @@ $(document).ready(function()
 
 	$.post('/svnapproval/file/svnst/', function(data) 
 	{
-
-		//alert(data.length) ;
 		
 		// when no have data to show !!! 
 		if(data.length == 3 )
@@ -48,7 +46,17 @@ $(document).ready(function()
 			  //update added files 
 			  $.get('/svnapproval/file/svnst/', function(data) 
 			  {
-				  $('#changedfiles').html(data);
+				  
+				  	if(data.length == 3 )
+					{ 
+						 
+						$('#fileschange').hide();
+					}
+					else
+					{ 
+						$('#changedfiles').html(data);
+					}
+				  
 			  });
 			  
 			  
@@ -80,10 +88,16 @@ $(document).ready(function()
 			  $.get('/svnapproval/file/svnst/', function(data) 
 			  {
 				  
-				  
-				  
-				  
-				  $('#changedfiles').html(data);
+				  	if(data.length == 3 )
+					{ 
+						 
+						$('#fileschange').hide();
+					}
+					else
+					{ 
+						$('#changedfiles').html(data);
+					}
+			
 			  });
 			  
 			  
