@@ -4,6 +4,9 @@ $content =  $this->content  ;
 $status = $this->status   ;
 $folder = $this->folder ;
 
+
+//print_r($content); 
+
 ?>
   
   
@@ -40,7 +43,7 @@ if(sizeof($content) != 1)
 
 	//asort($content) ; 
 	
-	for($i = 1 ; sizeof($content) > $i ; $i ++)
+	for($i = 1 ; sizeof($content) + 1  > $i ; $i ++)
 	{
 
 		if($content[$i]["TYPE"] == "D") 
@@ -59,7 +62,7 @@ if(sizeof($content) != 1)
 	
 	
 	// files 
-	for($i = 1 ; sizeof($content) > $i ; $i ++)
+	for($i = 1 ; sizeof($content) + 1  > $i ; $i ++)
 	{
 		if($content[$i]["TYPE"] != "D") 
 		{ 
