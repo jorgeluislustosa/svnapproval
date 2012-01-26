@@ -43,17 +43,24 @@ class FileController extends Zend_Controller_Action
 
 		if($svn_st != "")
 		{
-			
-			for($i = 0 ; sizeof($output) > $i ; $i ++)
-			{
-				$parts = explode("       ",$output[$i]) ;
-				$array_status[$i]["NAME"]=$parts[1] ;
-				$array_status[$i]["TYPE"]=$parts[0] ;
+			// not output 
+			if(sizeof($output)==0)
+			{ 
+					$this->_helper->layout()->disableLayout();
+					$this->_helper->viewRenderer->setNoRender(true);
 			}
-	
-			$this->view->content  = $array_status ;
+			else
+			{ 
 			
-	
+				for($i = 0 ; sizeof($output) > $i ; $i ++)
+				{
+					$parts = explode("       ",$output[$i]) ;
+					$array_status[$i]["NAME"]=$parts[1] ;
+					$array_status[$i]["TYPE"]=$parts[0] ;
+				}
+		
+				$this->view->content  = $array_status ;
+			} 
 		}
 	
 	
