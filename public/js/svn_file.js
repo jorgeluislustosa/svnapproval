@@ -74,15 +74,13 @@ $(document).ready(function()
 	     {
 	    	 id = $(this).attr('id') ; 
 	    	 tagsArray.push(id);
-	    	 $('#'+id+'').html('loading');
+	    	 $('#'+id+'').html('loading'); 
 	     })  
 		   
 	     
 	     
 		  $.post('/svnapproval/file/svncommit', { 'tags[]': tagsArray },function(data) 
 		  {
-			  
-			  
 			  
 			  $("#missing-readme").show("slow");
 			  $('#missing-readme').html(data);
