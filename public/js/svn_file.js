@@ -74,9 +74,10 @@ $(document).ready(function()
 	     {
 	    	 id = $(this).attr('id') ; 
 	    	 tagsArray.push(id);
+	    	 $('#changedfiles').html('loading');
 	     })  
 		   
-	     $('#changedfiles').html('loading');
+	     
 	     
 		  $.post('/svnapproval/file/svncommit', { 'tags[]': tagsArray },function(data) 
 		  {
