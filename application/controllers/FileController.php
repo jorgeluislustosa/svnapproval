@@ -41,18 +41,13 @@ class FileController extends Zend_Controller_Action
 		
 		$svn_st = exec("/usr/bin/svn  st ".$project->directory.". 2>&1", $output , $returnStatus);
 
-		print_r($output) ; 
-		
-		if(!isset($output[0])) echo "jorge" ; 
-		
-		
 		if($svn_st != "")
 		{
 			
 			//echo sizeof($output) ; 
 			
 			// not output 
-			if(!$output)
+			if(!isset($output[0])) 
 			{ 
 					$this->_helper->layout()->disableLayout();
 					$this->_helper->viewRenderer->setNoRender(true);
