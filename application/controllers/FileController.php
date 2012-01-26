@@ -99,7 +99,7 @@ class FileController extends Zend_Controller_Action
 		}
 	
 		   
-		exec("/usr/bin/sudo /usr/bin/svn -q --username ".$project->svn_username." --password ".$project->svn_password." commit ".$command ." -m \"teste classe\" 2>&1", $output, $returnStatus);
+		exec("/usr/bin/sudo /usr/bin/svn -q --username ".$project->svn_username." --password ".$project->svn_password." commit ".$command ." -m \"".$_REQUEST['comment']."\" 2>&1", $output, $returnStatus);
 		if ( $returnStatus )
 		{
 			print_r($output);         
@@ -238,6 +238,28 @@ class FileController extends Zend_Controller_Action
 	}
 	
 
+	public function getsvnlastAction()
+	{  
+		
+		$this->_helper->layout()->disableLayout();
+		$this->_helper->viewRenderer->setNoRender(true);
+		
+		
+		include("../library/phpSVNclient.php") ;
+		$project = $this->loadprojectdata() ;
+		$svn  = new phpsvnclient;
+		
+		$svn->setRespository($project->svn_url);
+		$svn->setAuth($project->svn_username,$project->svn_password) ;
+		$logs = $svn->getRepositoryLogs($svn->getVersion()-1);
+		
+
+		//print_r($logs) ; 
+		
+		
+		
+	}
+	
 
 
 	
