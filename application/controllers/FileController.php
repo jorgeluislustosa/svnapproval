@@ -44,10 +44,10 @@ class FileController extends Zend_Controller_Action
 		if($svn_st != "")
 		{
 			
-			echo sizeof($output) ; 
+			//echo sizeof($output) ; 
 			
 			// not output 
-			if(sizeof($output)==0)
+			if(!$output)
 			{ 
 					$this->_helper->layout()->disableLayout();
 					$this->_helper->viewRenderer->setNoRender(true);
