@@ -132,8 +132,6 @@ class FileController extends Zend_Controller_Action
 		{
 
 			$command  .=  " ".$_REQUEST['tags'][$i]." "   ; 
-			
-			
 
 		}
 	
