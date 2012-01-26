@@ -12,7 +12,7 @@ $(document).ready(function()
 		alert(data) ;
 		
 		// when no have data to show !!! 
-		if(data=="")
+		if(data==" ")
 		{ 
 			 
 			$('#fileschange').hide();
