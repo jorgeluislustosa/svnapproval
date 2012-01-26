@@ -5,62 +5,25 @@ class FileController extends Zend_Controller_Action
 {
 	
 	
-	
 	public function init()
 	{
 		/* Initialize action controller here */
+		
 	}
 	
 	public function indexAction() 
 	{
 		
-		$this->view->folder = "/srv/svnapproval" ; 
-		$this->view->project_name = "svnapproval" ;
+		$project = $this->loadprojectdata() ; 
+		
+		 
+		$project->name  ;
+		
+		
+		$this->view->folder = $project->directory  ; ; 
+		$this->view->project_name = $project->name  ; ;
 		
 		//$this->home() ; 
-		
-	}
-	
-	
-	
-	
-	public function svnaddedfilesAction()
-	{
-
-		$this->_helper->layout()->disableLayout();
-		$this->_helper->viewRenderer->setNoRender(true);
-		
-
-		$svn_st = shell_exec("/usr/bin/svn status /srv/svnapproval/. ") ;
-		
-		if($svn_st != "")
-		{
-			//echo "erro" ;
-				
-			$status = explode("\n",$svn_st) ;
-		
-				
-			//$status = explode("       ",$svn_st) ;
-		
-			for($i = 0 ; sizeof($status) > $i ; $i ++)
-			{
-			$parts = explode("       ",$status[$i]) ;
-			//print_r($parts) ;
-			//echo $status[$i]."<br>" ;
-			
-			//if($parts[0] == "A")
-			//{ 
-				$array_status["".$parts[1].""]=$parts[0] ;
-			//}
-			
-			
-			}
-
-			print_r($array_status) ; 
-			
-				
-		}
-		
 		
 		
 	}
@@ -69,13 +32,14 @@ class FileController extends Zend_Controller_Action
 	{
 	
 		$this->_helper->layout()->disableLayout();
+		$project = $this->loadprojectdata() ;
 		//$this->_helper->viewRenderer->setNoRender(true);
 	
 	
 		//$svn_st = shell_exec("/usr/bin/svn status /srv/svnapproval/. ") ;
 		
 		
-		$svn_st = exec("/usr/bin/svn  st /srv/svnapproval/. 2>&1", $output , $returnStatus);
+		$svn_st = exec("/usr/bin/svn  st ".$project->directory.". 2>&1", $output , $returnStatus);
 
 		if($svn_st != "")
 		{
@@ -117,7 +81,6 @@ class FileController extends Zend_Controller_Action
 
 		}
 	
-	
 	}
 
 	
@@ -126,7 +89,7 @@ class FileController extends Zend_Controller_Action
 	
 		$this->_helper->layout()->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(true);
-	
+		$project = $this->loadprojectdata() ;
 	
 		for($i = 0 ; sizeof($_REQUEST['tags']) > $i ; $i ++)
 		{
@@ -136,7 +99,7 @@ class FileController extends Zend_Controller_Action
 		}
 	
 		   
-		exec("/usr/bin/svn --username jorgelustosa@gmail.com --password ZM3nX4aV7kS5 commit ".$command ." -m \"teste classe\" 2>&1", $output, $returnStatus);
+		exec("/usr/bin/svn --username ".$project->svn_username." --password ".$project->svn_password." commit ".$command ." -m \"teste classe\" 2>&1", $output, $returnStatus);
 		if ( $returnStatus )
 		{
 			print_r($output);
@@ -150,12 +113,15 @@ class FileController extends Zend_Controller_Action
 	
 		$this->_helper->layout()->disableLayout();
 		
+		$project = $this->loadprojectdata() ;
+		
 		global $folder, $tbcolor1, $tbcolor2, $tbcolor3, $filefolder, $HTTP_HOST;
 	
 		$op = $_REQUEST['op'];
 		$folder = $_REQUEST['folder'];
-	
-		if($folder=="") $folder = "/srv/svnapproval/" ;
+		
+		
+		if($folder=="") $folder = $project->directory ;
 	
 	
 		$count = "0";
@@ -229,6 +195,19 @@ class FileController extends Zend_Controller_Action
 			$this->view->folder = $folder ;
 				
 	}
+	
+	
+	
+	private function loadprojectdata()
+	{ 
+		
+		$data = new Application_Model_DbTable_Projects() ;
+		$project = $data->find('1') ;
+		$row = $project->current();
+		return $row  ;
+		
+	}
+	
 	
 
 	
