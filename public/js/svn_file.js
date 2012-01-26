@@ -15,9 +15,7 @@ $(document).ready(function()
 		// when no have data to show !!! 
 		if(data=="")
 		{ 
-			//$('#changedfiles').hide();
-			$('#changedfiles').css('display', 'none')
-			
+			$('#fileschange').hide();
 		}
 		
 		$('#changedfiles').html(data);
