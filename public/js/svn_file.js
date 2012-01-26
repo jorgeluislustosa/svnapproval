@@ -76,9 +76,12 @@ $(document).ready(function()
 	    	 tagsArray.push(id);
 	     })  
 		   
-		
+	     $('#changedfiles').html('loading');
+	     
 		  $.post('/svnapproval/file/svncommit', { 'tags[]': tagsArray },function(data) 
 		  {
+			  
+			  
 			  
 			  $("#missing-readme").show("slow");
 			  $('#missing-readme').html(data);
@@ -105,46 +108,15 @@ $(document).ready(function()
 	});
 	
 	
-/*	//when start populate added files  
-	
-	$.post('/svnapproval/file/svnaddedFiles/', function(data) 
-	{
-				//  $('#added_files').html(data);
-	});
-	
-	$.post('/svnapproval/file/listfiles/', function(data) 
-	{
-					//	  $('#resultadoConsulta').html(data);
-	});
-	
-	
-	
-	
-//alert('') ; 
-		
-	$('#folder').change(function() 
-	{
-		  alert($('#folder').val());
-		  
-		  
-		  
-		  $.post('/svnapproval/file/?folder='+$('#folder').val(), function(data) 
-		  {
-			  $('#content').html(data);
-		  });
-		  
-		  
-	});
-	
-	
-	
-	 */ 
 });
 
 
 
 function opendir(dir) 
 {
+	
+	
+	
 	
 	$.post('/svnapproval/file/listfiles/',{ 'folder':dir+'/' } , function(data) 
 			{
