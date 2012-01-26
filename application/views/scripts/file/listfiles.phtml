@@ -85,10 +85,18 @@ if(sizeof($content) != 1)
 	} 
 	else
 	{ 
+		
+		$lastdir = explode("/",$folder) ; 
+		for($i=0 ; sizeof($lastdir) -2   > $i ; $i ++ )
+		{ 
+			$dir .=  $lastdir[$i]."/" ;  
+			
+		}
+		
 	?>	
 		<tr class="alt">
 		            <td class="icon"></td>
-		            <td class="content"> <a href="#" onclick="opendir('<?php echo  $folder  ?>')"    class="js-slide-to js-rewrite-sha" ><?php echo  $content[$i]["NAME"] ; ?> .. </a></td>
+		            <td class="content"> <a href="#" onclick="opendir('<?php echo  $dir  ?>')"    class="js-slide-to js-rewrite-sha" ><?php echo  $content[$i]["NAME"] ; ?> .. </a></td>
 		            <td class="age"> <time class="js-relative-date" datetime="2012-01-23T22:06:03-08:00" title="2012-01-23 22:06:03">January 23, 2012</time> </td>
 		            <td class="message"> <a href="/bsdperimeter/pfsense-packages/commit/dc555615f68325945ff12c35cf5d9ea0dccdf4ee" class="message">removes the gratioutous use of killall and kill -9 in place of using …</a> </td>
 		 </tr>
