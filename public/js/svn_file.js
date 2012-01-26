@@ -74,7 +74,7 @@ $(document).ready(function()
 	     {
 	    	 id = $(this).attr('id') ; 
 	    	 tagsArray.push(id);
-	    	 $('#changedfiles').html('loading');
+	    	 $('#'+id+'').html('loading');
 	     })  
 		   
 	     
