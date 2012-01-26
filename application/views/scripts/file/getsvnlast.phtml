@@ -1,0 +1,28 @@
+<?php 
+
+//print_r($this->logs) ; 
+
+$log = $this->logs ;  
+
+?>  
+  
+  
+  <p class="commit-title ">
+      <a class="message" >Merge pull request </a><a class="issue-link" >#<? echo $log[0]["version"] ?></a>
+      <a class="message" href="/bsdperimeter/pfsense-packages/commit/77843d5bf49396612310007b236a74b252f3fbba"> from <?php echo $log[0]["author"] ?> </a>
+      
+      <div ><pre><? echo $log[0]["comment"] ?></pre></div>
+      
+  </p>
+    
+
+  <div class="commit-meta">
+    <a class="sha-block" >commit <span class="sha"><? echo md5($log[0]["version"]) ?></span></a>
+
+    <div class="authorship">
+      <img height="20" width="20" src="https://secure.gravatar.com/avatar/370cd28966fe69a5b1c14f5c9da5f536?s=140&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png" class="gravatar">
+      <span class="author-name"><a href="/jim-p"><? echo $log[0]["author"] ?></a></span>
+      authored <time  class="js-relative-date"><? echo $log[0]["date"] ?></time>
+
+    </div>
+  </div>

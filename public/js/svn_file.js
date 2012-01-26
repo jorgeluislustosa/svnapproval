@@ -5,6 +5,14 @@ $(document).ready(function()
 	{
 		 $('#filemanager').html(data);
 	});
+	
+
+	$('#last_commit').html('<center><img src="/svnapproval/img/loading.gif"> </img></center>');
+	$.post('/svnapproval/file/getsvnlast/', function(data) 
+	{
+		$('#last_commit').html(data);
+	});
+
 
 	$.post('/svnapproval/file/svnst/', function(data) 
 	{
@@ -99,6 +107,13 @@ $(document).ready(function()
 					  $('#missing-readme').html(data);
 		
 					  
+					  	$('#last_commit').html('<center><img src="/svnapproval/img/loading.gif"> </img></center>');
+						$.post('/svnapproval/file/getsvnlast/', function(data) 
+						{
+							$('#last_commit').html(data);
+						});
+
+					  
 					  //update added files 
 					  $.get('/svnapproval/file/svnst/', function(data) 
 					  {
@@ -107,20 +122,16 @@ $(document).ready(function()
 							{ 
 								 
 								$('#fileschange').hide();
+								$('#comment_body_50').val()="" ; 
 							}
 							else
 							{ 
 								$('#changedfiles').html(data);
 								$('#comment_body_50').val()="" ; 
 							}
-					
 					  });
-					  
-					  
 				  });
-		  
 		}  
-		  
 	});
 	
 	
