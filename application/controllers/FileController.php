@@ -14,7 +14,7 @@ class FileController extends Zend_Controller_Action
 	public function indexAction() 
 	{
 		
-		$this->view->folder = "/d01/svnapproval" ; 
+		$this->view->folder = "/srv/svnapproval" ; 
 		$this->view->project_name = "svnapproval" ;
 		
 		//$this->home() ; 
@@ -31,7 +31,7 @@ class FileController extends Zend_Controller_Action
 		$this->_helper->viewRenderer->setNoRender(true);
 		
 
-		$svn_st = shell_exec("/usr/bin/svn status /d01/svnapproval/. ") ;
+		$svn_st = shell_exec("/usr/bin/svn status /srv/svnapproval/. ") ;
 		
 		if($svn_st != "")
 		{
@@ -72,10 +72,10 @@ class FileController extends Zend_Controller_Action
 		//$this->_helper->viewRenderer->setNoRender(true);
 	
 	
-		//$svn_st = shell_exec("/usr/bin/svn status /d01/svnapproval/. ") ;
+		//$svn_st = shell_exec("/usr/bin/svn status /srv/svnapproval/. ") ;
 		
 		
-		$svn_st = exec("/usr/bin/svn  st /d01/svnapproval/. 2>&1", $output , $returnStatus);
+		$svn_st = exec("/usr/bin/svn  st /srv/svnapproval/. 2>&1", $output , $returnStatus);
 
 		if($svn_st != "")
 		{
@@ -157,7 +157,7 @@ class FileController extends Zend_Controller_Action
 		$op = $_REQUEST['op'];
 		$folder = $_REQUEST['folder'];
 	
-		if($folder=="") $folder = "/d01/svnapproval/" ;
+		if($folder=="") $folder = "/srv/svnapproval/" ;
 	
 	
 		$count = "0";
