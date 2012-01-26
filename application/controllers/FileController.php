@@ -41,6 +41,9 @@ class FileController extends Zend_Controller_Action
 		
 		$svn_st = exec("/usr/bin/svn  st ".$project->directory.". 2>&1", $output , $returnStatus);
 
+		
+		echo strlen($output) ; 
+		
 		if($svn_st != "")
 		{
 			
