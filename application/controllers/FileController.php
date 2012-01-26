@@ -99,11 +99,11 @@ class FileController extends Zend_Controller_Action
 		}
 	
 		   
-		exec("/usr/bin/svn -q --username ".$project->svn_username." --password ".$project->svn_password." commit ".$command ." -m \"teste classe\" 2>&1", $output, $returnStatus);
+		exec("/usr/bin/sudo /usr/bin/svn -q --username ".$project->svn_username." --password ".$project->svn_password." commit ".$command ." -m \"teste classe\" 2>&1", $output, $returnStatus);
 		if ( $returnStatus )
 		{
 			print_r($output);         
-		}
+		}   
 	
 	}
 	
