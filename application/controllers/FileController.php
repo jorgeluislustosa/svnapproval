@@ -242,8 +242,6 @@ class FileController extends Zend_Controller_Action
 	{  
 		
 		$this->_helper->layout()->disableLayout();
-		$this->_helper->viewRenderer->setNoRender(true);
-		
 		
 		include("../library/phpSVNclient.php") ;
 		$project = $this->loadprojectdata() ;
@@ -251,12 +249,9 @@ class FileController extends Zend_Controller_Action
 		
 		$svn->setRespository($project->svn_url);
 		$svn->setAuth($project->svn_username,$project->svn_password) ;
-		$logs = $svn->getRepositoryLogs($svn->getVersion()-1);
+		$logs = $svn->getRepositoryLogs($svn->getVersion());
 		
-
-		//print_r($logs) ; 
-		
-		
+		$this->view->logs  = $logs ;
 		
 	}
 	
