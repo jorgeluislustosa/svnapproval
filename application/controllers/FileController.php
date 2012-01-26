@@ -154,13 +154,12 @@ class FileController extends Zend_Controller_Action
 			if ($stylesheet[0] != "." && $stylesheet[0] != ".." ) {
 				if (is_dir($folder.$stylesheet) && is_readable($folder.$stylesheet)) {
 						
-					$content[$a]["NAME"] = $folder.$stylesheet ;
-					$content[$a]["TYPE"] = "D";
+					$array_dir[$a]=$folder.$stylesheet ; 
+					
 					$a++;
 				} elseif (!is_dir($folder.$stylesheet) && is_readable($folder.$stylesheet)) {
 						
-					$content[$a]["NAME"] = $folderx.$stylesheet ;
-					$content[$a]["TYPE"] = "F";
+					$array_file[$a]=$folderx.$stylesheet ;
 					$a++;
 						
 				} else {
@@ -170,7 +169,30 @@ class FileController extends Zend_Controller_Action
 			}
 		}
 		closedir($style);
-	
+
+		
+		// show order by array 
+		sort($array_dir) ; 
+		sort($array_file) ;
+				
+		$a = 1 ; 
+		
+		for($i = 0 ; sizeof($array_dir) > $i ; $i ++)
+		{
+			$content[$a]["NAME"] = $array_dir[$i] ;
+			$content[$a]["TYPE"] = "D";
+			$a ++  ; 
+		}
+		for($i = 0 ; sizeof($array_file) > $i ; $i ++)
+		{
+			$content[$a]["NAME"] = $array_file[$i] ;
+			$content[$a]["TYPE"] = "F";
+			$a ++  ; 
+		}
+		
+		
+		
+		
 	
 		$svn_st = shell_exec("/usr/bin/svn status ".$_REQUEST['folder'].". ") ;
 	
@@ -194,8 +216,7 @@ class FileController extends Zend_Controller_Action
 				
 			}
 	
-			//print_r($array_status) ;
-	
+					
 			$this->view->content  = $content ;
 			$this->view->status = $array_status ;
 			$this->view->folder = $folder ;
@@ -214,10 +235,9 @@ class FileController extends Zend_Controller_Action
 		
 	}
 	
-	
 
-	
-	
+
+
 	
 	
 	
