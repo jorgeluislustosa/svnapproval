@@ -78,6 +78,11 @@ class FileController extends Zend_Controller_Action
 			{
 				    print_r($output);
 			}
+			else
+			{ 
+				
+				echo "The selected files are added !" ; 
+			}
 
 		}
 	
@@ -104,6 +109,12 @@ class FileController extends Zend_Controller_Action
 		{
 			print_r($output);         
 		}   
+		else
+		{ 
+			
+			echo "All files are commited !" ; 
+			
+		}
 	
 	}
 	
