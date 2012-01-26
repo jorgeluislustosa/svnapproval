@@ -43,6 +43,9 @@ class FileController extends Zend_Controller_Action
 
 		print_r($output) ; 
 		
+		if(!isset($output[0])) echo "jorge" ; 
+		
+		
 		if($svn_st != "")
 		{
 			
