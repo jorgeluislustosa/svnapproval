@@ -9,10 +9,10 @@ $(document).ready(function()
 	$.post('/svnapproval/file/svnst/', function(data) 
 	{
 
-		alert(data.length) ;
+		//alert(data.length) ;
 		
 		// when no have data to show !!! 
-		if(data==" ")
+		if(data.length == 3 )
 		{ 
 			 
 			$('#fileschange').hide();
