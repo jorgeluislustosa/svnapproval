@@ -67,9 +67,6 @@ class FileController extends Zend_Controller_Action
 		$this->_helper->layout()->disableLayout();
 		$this->_helper->viewRenderer->setNoRender(true);
 		
-		
-		//print_r($_REQUEST['tags']); 
-		
 		for($i = 0 ; sizeof($_REQUEST['tags']) > $i ; $i ++)
 		{
 			
