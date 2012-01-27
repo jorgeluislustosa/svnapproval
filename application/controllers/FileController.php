@@ -39,7 +39,7 @@ class FileController extends Zend_Controller_Action
 		//$svn_st = shell_exec("/usr/bin/svn status /srv/svnapproval/. ") ;
 		
 		
-		$svn_st = exec("/usr/bin/svn  st ".$project->directory.". 2>&1", $output , $returnStatus);
+		$svn_st = exec("/usr/bin/sudo /usr/bin/svn  st ".$project->directory.". 2>&1", $output , $returnStatus);
 
 		if($svn_st != "")
 		{
@@ -68,7 +68,7 @@ class FileController extends Zend_Controller_Action
 		for($i = 0 ; sizeof($_REQUEST['tags']) > $i ; $i ++)
 		{
 			
-			exec("/usr/bin/svn  add ".$_REQUEST['tags'][$i]." 2>&1", $output, $returnStatus);
+			exec("/usr/bin/sudo /usr/bin/svn  add ".$_REQUEST['tags'][$i]." 2>&1", $output, $returnStatus);
 			if ( $returnStatus )
 			{
 				    print_r($output);
@@ -93,7 +93,7 @@ class FileController extends Zend_Controller_Action
 	for($i = 0 ; sizeof($_REQUEST['tags']) > $i ; $i ++)
 	{
 		
-	exec("/usr/bin/svn  del ".$_REQUEST['tags'][$i]." 2>&1", $output, $returnStatus);
+	exec("/usr/bin/sudo /usr/bin/svn  del ".$_REQUEST['tags'][$i]." 2>&1", $output, $returnStatus);
 	if ( $returnStatus )
 	{
 	print_r($output);

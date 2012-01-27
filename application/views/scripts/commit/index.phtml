@@ -1,0 +1,97 @@
+<script type="text/javascript" src="/svnapproval/js/svn_commit.js"></script>
+
+
+<? 
+
+ $log = $this->logs ;  
+
+ 
+ //print_r($log) ; 
+ 
+ 
+ for($j =0 ;sizeof($log) > $j ; $j ++ )
+ { 
+ 	$array_title[$j] = substr($log[$j]["date"],0,10) ; 
+ }
+
+ $array_title = array_unique($array_title); 
+ 
+
+ 
+foreach ($array_title as &$value)
+{
+
+	
+	?>  
+<h3 class="commit-group-heading"><?  echo $value ?></h3>
+  
+	<ol class="commit-group">
+	
+	<?
+	
+	for($i = 0 ; sizeof($log) > $i ; $i ++ )
+	{ 
+	
+		
+		
+		if(substr($log[$i]["date"],0,10) == $value)
+		{ 
+	?>
+	
+	
+	          <li class="commit commit-group-item js-navigation-item js-details-container">
+	          
+	          <img height="36" width="36" src="https://secure.gravatar.com/avatar/d6648320a2b6bd6c5f324c63127bef6b?s=140&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png" class="gravatar">
+	          
+				<p class="commit-title ">
+				<a class="message" href="/jorgelustosa/pfsense-packages/commit/8fe40d984c1b966d355f1ad3c52b50e98ca052af"><? echo $log[$i]["comment"]  ?></a>
+				<a class="minibutton expander-minibutton js-details-target" >
+				<span>…</span>
+				</a>
+				
+				
+				</p>
+				<div class="commit-meta">
+			<div class="commit-links">
+<span id="clippy_534" class="clippy-text" style="display:none"><? echo md5($log[$i]["version"])  ?></span>
+<span id="clippy_tooltip_clippy_534" class="clippy-tooltip tooltipped" original-title="Copy SHA">
+<object id="clippy" class="clippy" height="14" width="14" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000">
+<param value="https://a248.e.akamai.net/assets.github.com/flash/clippy.swf?1315937721?v5" name="movie">
+<param value="always" name="allowScriptAccess">
+<param value="high" name="quality">
+<param value="noscale" name="scale">
+<param value="id=clippy_534&copied=copied!&copyto=Copy SHA" name="FlashVars">
+<param value="#FFFFFF" name="bgcolor">
+<param value="opaque" name="wmode">
+<embed height="14" width="14" wmode="opaque" bgcolor="#FFFFFF" flashvars="id=clippy_534&copied=copied!&copyto=Copy SHA" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" allowscriptaccess="always" quality="high" name="clippy" src="https://a248.e.akamai.net/assets.github.com/flash/clippy.swf?1315937721?v5">
+</object>
+</span>
+<a class="gobutton " data-key="c" href="/jorgelustosa/pfsense-packages/commit/89734e0d62e7011cd895a71aa81cec1fd07fbbe8">
+<span class="sha"><? echo md5($log[$i]["version"])  ?></span>
+</a>
+<a class="browse-button" rel="nofollow" title="Browse the code at this point in the history" href="/jorgelustosa/pfsense-packages/tree/89734e0d62e7011cd895a71aa81cec1fd07fbbe8">Browse code</a>
+</div>
+				<div class="authorship">
+				<span class="author-name">
+				authored
+				<time class="js-relative-date" title="<? echo str_replace("T"," ",substr($log[$i]["date"],0,16)) ?>" datetime="<? echo $log[$i]["date"]  ?>"><? echo str_replace("T"," ",substr($log[$i]["date"],0,16)) ?></time>
+				</div>
+				</div>
+
+	          </li>
+	          
+	 <?    } 
+	 
+		} 
+	 
+		?></ol><?
+	
+  }  ?>         
+          
+      
+
+
+ 
+ 
+ 
+ 
