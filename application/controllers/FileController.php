@@ -75,7 +75,6 @@ class FileController extends Zend_Controller_Action
 			}
 			else
 			{ 
-				
 				echo "The selected files are added !" ; 
 			}
 
