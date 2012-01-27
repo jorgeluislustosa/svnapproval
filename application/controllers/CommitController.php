@@ -26,7 +26,7 @@ class CommitController extends Zend_Controller_Action
 		
 		$svn->setRespository($project->svn_url);
 		$svn->setAuth($project->svn_username,$project->svn_password) ;
-		$logs = $svn->getRepositoryLogs($svn->getVersion() - 100 );
+		$logs = $svn->getRepositoryLogs($svn->getVersion() - 30 );
 		
 		$this->view->logs  = $logs ;
 		

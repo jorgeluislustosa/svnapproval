@@ -81,6 +81,32 @@ class FileController extends Zend_Controller_Action
 		}
 	
 	}
+	
+	
+	
+	public function svndelAction()
+	{
+	
+	$this->_helper->layout()->disableLayout();
+	$this->_helper->viewRenderer->setNoRender(true);
+	
+	for($i = 0 ; sizeof($_REQUEST['tags']) > $i ; $i ++)
+	{
+		
+	exec("/usr/bin/svn  del ".$_REQUEST['tags'][$i]." 2>&1", $output, $returnStatus);
+	if ( $returnStatus )
+	{
+	print_r($output);
+	}
+	else
+		{
+			echo "The selected files are removed !" ;
+			}
+	
+			}
+		
+		}
+	
  
 	
 	public function svncommitAction()

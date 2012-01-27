@@ -72,6 +72,46 @@ $(document).ready(function()
 		  });
 	});
 	
+	// when files are del 
+	$('#delete_file').click(function() 
+	{
+
+	     
+		 var tagsArray = new Array();
+	     $('input:checked').each(function()
+	     {
+	    	 id = $(this).attr('id') ; 
+	    	 tagsArray.push(id);
+	     })  
+		
+		$('#changedfiles').html('<center><img src="/svnapproval/img/loading.gif"> </img></center>');
+	     
+		  $.post('/svnapproval/file/svndel', { 'tags[]': tagsArray },function(data) 
+		  {
+			  
+			  $("#missing-readme").show("slow");
+			  $('#missing-readme').html(data);
+			  
+			  //update added files 
+			  $.get('/svnapproval/file/svnst/', function(data) 
+			  {
+				  
+				  	if(data.length == 3 )
+					{ 
+						 
+						$('#fileschange').hide();
+					}
+					else
+					{ 
+						$('#changedfiles').html(data);
+					}
+				  
+			  });
+			  
+			  
+		  });
+	});
+	
 	
 	// when files are commited 
 	$('#commit_file').click(function() 
