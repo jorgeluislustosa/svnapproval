@@ -33,7 +33,7 @@ foreach ($array_title as &$value)
 	{ 
 	
 		
-		
+		   
 		if(substr($log[$i]["date"],0,10) == $value)
 		{ 
 	?>
@@ -71,9 +71,9 @@ foreach ($array_title as &$value)
 </a>
 <a class="browse-button" rel="nofollow" title="Browse the code at this point in the history" href="/jorgelustosa/pfsense-packages/tree/89734e0d62e7011cd895a71aa81cec1fd07fbbe8">Browse code</a>
 </div>
-				<div class="authorship">
+				<div class="authorship"> 
 				<span class="author-name">
-				authored
+				<? echo $log[$i]["author"] ?>
 				<time class="js-relative-date" title="<? echo str_replace("T"," ",substr($log[$i]["date"],0,16)) ?>" datetime="<? echo $log[$i]["date"]  ?>"><? echo str_replace("T"," ",substr($log[$i]["date"],0,16)) ?></time>
 				</div>
 				</div>
